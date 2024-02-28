@@ -1,0 +1,31 @@
+.CalendarPage {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 1vmin;
+}
+
+.CalendarPage > header {
+  grid-column: span 7;
+  justify-content: space-between;
+}
+
+.CalendarPage > .dow {
+  height: 8vmin;
+  width: 8vmin;
+}
+
+.CalendarPage > header > span:first-child,
+.CalendarPage > header > span:last-child {
+  cursor: pointer;
+}
+
+.CalDay {
+  height: 8vmin;
+  width: 8vmin;
+  background-color: rgb(248, 198, 206);
+  border-radius: 1vmin;
+}
+
+.CalDay.today {
+  border: 0.5vmin solid gray;
+}
