@@ -17,7 +17,7 @@ const MO_NAMES = [
   'December',
 ];
 
-export default function CalendarPage({ toDos }) {
+export default function CalendarPage() {
   const today = new Date(new Date().setHours(0, 0, 0, 0));
   const [calMo, setCalMo] = useState(today.getMonth());
   const [calYr, setCalYr] = useState(today.getFullYear());
@@ -52,22 +52,12 @@ export default function CalendarPage({ toDos }) {
     const date = new Date(calYr, calMo, i);
     const isToday = today.valueOf() === date.valueOf();
 
-    const manana = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-    const toDosToday = toDos.filter(
-      (toDo) =>
-        toDo.date.valueOf() >= date.valueOf() &&
-        toDo.date.valueOf() < manana.valueOf()
-    );
-
-    const toDoItems = toDosToday.map((toDo) => toDo.category.slice(0, 3) + '<br/>');
-
     calDays.push(
       <article
         className={`CalDay${isToday ? ' today' : ''}`}
         style={{ gridColumnStart: i === 1 && date.getDay() + 1 }}
         key={date}
         onClick={() => handleDayClick(date)}
-        dangerouslySetInnerHTML={{ __html: toDoItems }}
       ></article>
     );
   }

@@ -1,0 +1,26 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.row > div {
+  width: 200px;
+  border: 1px solid black;
+}
+
+.Exercise {
+  background-color: aliceblue;
+}
+
+.Study {
+  background-color: lightgreen;
+}
+
+.Jobs {
+  background-color: salmon;
+}
+
+.Read {
+  background-color: violet;
+}
