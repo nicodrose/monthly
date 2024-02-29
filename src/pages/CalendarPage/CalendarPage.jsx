@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import './CalendarPage.css';
 
 const MO_NAMES = [
@@ -16,11 +17,12 @@ const MO_NAMES = [
   'December',
 ];
 
-export default function CalendarPage({ tasks }) {
+export default function CalendarPage({ toDos }) {
   const today = new Date(new Date().setHours(0, 0, 0, 0));
   const [calMo, setCalMo] = useState(today.getMonth());
   const [calYr, setCalYr] = useState(today.getFullYear());
   const numCalDays = new Date(calYr, calMo + 1, 0).getDate();
+  const navigate = useNavigate();
 
   function handlePrevMo() {
     if (calMo === 0) {
@@ -41,7 +43,7 @@ export default function CalendarPage({ tasks }) {
   }
 
   function handleDayClick(date) {
-    alert(date);
+    navigate(`/calendar/${date}`);
   }
 
   const calDays = [];
@@ -51,13 +53,13 @@ export default function CalendarPage({ tasks }) {
     const isToday = today.valueOf() === date.valueOf();
 
     const manana = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-    const tasksToday = tasks.filter(
-      (task) =>
-        task.date.valueOf() >= date.valueOf() &&
-        task.date.valueOf() < manana.valueOf()
+    const toDosToday = toDos.filter(
+      (toDo) =>
+        toDo.date.valueOf() >= date.valueOf() &&
+        toDo.date.valueOf() < manana.valueOf()
     );
 
-    const taskItems = tasksToday.map((task) => task.category.slice(0, 3) + '<br/>');
+    const toDoItems = toDosToday.map((toDo) => toDo.category.slice(0, 3) + '<br/>');
 
     calDays.push(
       <article
@@ -65,7 +67,7 @@ export default function CalendarPage({ tasks }) {
         style={{ gridColumnStart: i === 1 && date.getDay() + 1 }}
         key={date}
         onClick={() => handleDayClick(date)}
-        dangerouslySetInnerHTML={{ __html: taskItems }}
+        dangerouslySetInnerHTML={{ __html: toDoItems }}
       ></article>
     );
   }

@@ -11,7 +11,7 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <Link to="/calendar">Calendar</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
+      <Link to="/calendar/:date">Day Detail</Link>
       &nbsp;&nbsp;
       <span>Welcome, {user.name}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
