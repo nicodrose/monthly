@@ -29,6 +29,8 @@ async function update(req, res) {
   }
 }
 
+// set up delete similar to update, include try/catch block
+
 // async function deleteToDo(req, res) {
 //   const toDo = await ToDo.findOne();
 //   res.json(toDo);

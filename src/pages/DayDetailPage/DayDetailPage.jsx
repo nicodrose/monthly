@@ -26,8 +26,8 @@ export default function DayDetailPage() {
     setToDos(toDos.map((todo) => todo._id === id ? {...todo, edit: !todo.edit} : todo));
   }
   
-  function handleEditChange(id, newText) {
-    setToDos(toDos.map((todo) => todo._id === id ? {...todo, description: newText} : todo));
+  function handleEditChange(id, field, newValue) {
+    setToDos(toDos.map((todo) => todo._id === id ? {...todo, [field]: newValue} : todo));
   }
   
   function handleEditCancel(todo) {
@@ -59,37 +59,87 @@ export default function DayDetailPage() {
       >
         <div>{`${i}:00`}</div>
         <div>
-              { timeToDos && 
-                timeToDos.map((t) => (
-                  <div key={t._id} className={t.category}>
-                    {t.edit ? (
-                      <>
-                      <input
-                        type='text'
-                        value={t.description}
-                        onChange={(e) => handleEditChange(t._id, e.target.value)}
-                      />
-                      <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
-                      <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
-                      </>
-                    ) : (
-                        <p onClick={() => toggleEdit(t._id)}>{t.description} at {t.time}</p>
-                    )}
-                  </div>
-                ))
-              }
+          { timeToDos && 
+            timeToDos.map((t) => (
+              <div key={t._id} className={t.category}>
+                {t.edit ? (
+                  <>
+                  <input
+                    type='text'
+                    value={t.description}
+                    onChange={(e) => handleEditChange(t._id, 'description', e.target.value)}
+                  />
+                  <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                  <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                  </>
+                ) : (
+                    <p onClick={() => toggleEdit(t._id)}>{t.description} at {t.time}</p>
+                )}
+              </div>
+            ))
+          }
+        </div>
+        <div>
+          { timeToDos && 
+            timeToDos.map((t) => (
+              <div key={t._id} className={t.category}>
+                {t.edit ? (
+                  <>
+                  <input
+                    type='text'
+                    value={t.time}
+                    onChange={(e) => handleEditChange(t._id, 'time', e.target.value)}
+                  />
+                  <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                  <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                  </>
+                ) : (
+                    <p onClick={() => toggleEdit(t._id)}>{t.time}</p>
+                )}
+              </div>
+            ))
+          }
         </div>
         <div>
           { timeToDos && 
           timeToDos.map((t) => (
-            <div key={t._id} className={t.category}>{t.duration}</div>
+            <div key={t._id} className={t.category}>
+              {t.edit ? (
+                <>
+                <input
+                  type='number'
+                  value={t.duration}
+                  onChange={(e) => handleEditChange(t._id, 'duration', e.target.value)}
+                />
+                <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                </>
+              ) : (
+                <p onClick={() => toggleEdit(t._id)}>{t.duration}</p>
+              )}
+            </div>
           ))
         }
         </div>
         <div>
           { timeToDos && 
           timeToDos.map((t) => (
-            <div key={t._id} className={t.category}>{t.status ? 'Complete' : 'Incomplete'}</div>
+            <div key={t._id} className={t.category}>
+              {t.edit ? (
+                <>
+                <input
+                  type='text'
+                  //could change type to checkbox and in row 113 change e.target.value to e.target.checked
+                  value={t.complete}
+                  onChange={(e) => handleEditChange(t._id, 'complete', e.target.value)}
+                />
+                <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                </>
+              ) : (
+                <p onClick={() => toggleEdit(t._id)}>{t.complete ? 'Complete' : 'Incomplete'}</p>
+              )}
+            </div>
           ))
         }
         </div>
@@ -102,8 +152,9 @@ export default function DayDetailPage() {
     <h1>DayDetailPage</h1>
       <div>
         <div className='row'>
-          <div>Time</div>
+          <div>Schedule</div>
           <div>To-Do</div>
+          <div>Time</div>
           <div>Duration(hrs)</div>
           <div>Status</div>
         </div>
