@@ -8,3 +8,7 @@ export function add(toDoData) {
 export function getAll(date) {
   return sendRequest(`${BASE_URL}/${date}`); 
 }
+
+export function update(updatedToDo) {
+  return sendRequest(BASE_URL, 'PUT', updatedToDo);
+}

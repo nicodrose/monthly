@@ -2,7 +2,9 @@ const ToDo = require('../../models/todo');
 
 module.exports = {
   create,
-  index
+  index, 
+  update,
+  // delete: deleteToDo
 };
 
 async function create(req, res) {
@@ -16,3 +18,18 @@ async function index(req, res) {
   console.log(todos);
   res.json(todos);
 }
+
+async function update(req, res) {
+  try {
+    const updatedToDo = await ToDo.findByIdAndUpdate(req.body._id, req.body, {new: true});
+    res.json(updatedToDo); 
+  } catch (err) {
+    console.log(err);
+    res.status(400).json('Update ToDo Failed');
+  }
+}
+
+// async function deleteToDo(req, res) {
+//   const toDo = await ToDo.findOne();
+//   res.json(toDo);
+// }

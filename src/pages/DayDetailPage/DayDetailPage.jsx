@@ -6,7 +6,7 @@ import '../DayDetailPage/DayDetailPage.css';
 
 export default function DayDetailPage() {
   const {date} = useParams();
-  console.log(date);
+  
   const [toDos, setToDos] = useState([]);
 
   async function addToDo(toDoData) {
@@ -20,7 +20,27 @@ export default function DayDetailPage() {
       setToDos(todos);
     }
     getAllToDos();
-  }, [])
+  }, [date]);
+
+  function toggleEdit(id) {
+    setToDos(toDos.map((todo) => todo._id === id ? {...todo, edit: !todo.edit} : todo));
+  }
+  
+  function handleEditChange(id, newText) {
+    setToDos(toDos.map((todo) => todo._id === id ? {...todo, description: newText} : todo));
+  }
+  
+  function handleEditCancel(todo) {
+    delete todo.edit;
+    setToDos([...toDos]);
+  }
+
+  async function handleEditConfirm(todo) {
+    delete todo.edit;
+    const updatedToDo = await toDosAPI.update(todo);
+    const updatedToDos = toDos.map((t) => t._id === updatedToDo._id ? updatedToDo: t);
+    setToDos(updatedToDos);
+  }
 
   const schedule = []
 
@@ -28,38 +48,48 @@ export default function DayDetailPage() {
     return (n < 10 ? '0' : '') + n.toString();
   }
 
-  // const timeToDos = toDos.map((t) => typeof(t.time))
   for (let i = 0; i <= 24; i++) {
     const time = minTwoDigits(i);
-    console.log(time);
     const timeToDos = toDos.filter((t) => time === t.time.substring(0, t.time.indexOf(':')))
-    console.log(timeToDos);
+    
     schedule.push(
       <div
         className='row'
-        // style={{ gridColumnStart: i === 1 && date.getDay() + 1 }}
         key={i}
-        // onClick={() => handleDayClick(date)}
       >
         <div>{`${i}:00`}</div>
         <div>
-          { timeToDos.length > 0 && 
+              { timeToDos && 
+                timeToDos.map((t) => (
+                  <div key={t._id} className={t.category}>
+                    {t.edit ? (
+                      <>
+                      <input
+                        type='text'
+                        value={t.description}
+                        onChange={(e) => handleEditChange(t._id, e.target.value)}
+                      />
+                      <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                      <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                      </>
+                    ) : (
+                        <p onClick={() => toggleEdit(t._id)}>{t.description} at {t.time}</p>
+                    )}
+                  </div>
+                ))
+              }
+        </div>
+        <div>
+          { timeToDos && 
           timeToDos.map((t) => (
-            <div className={t.category}>{t.description} at {t.time}</div>
+            <div key={t._id} className={t.category}>{t.duration}</div>
           ))
         }
         </div>
         <div>
-          { timeToDos.length > 0 && 
+          { timeToDos && 
           timeToDos.map((t) => (
-            <div className={t.category}>{t.duration}</div>
-          ))
-        }
-        </div>
-        <div>
-          { timeToDos.length > 0 && 
-          timeToDos.map((t) => (
-            <div className={t.category}>{t.status ? 'Complete' : 'Incomplete'}</div>
+            <div key={t._id} className={t.category}>{t.status ? 'Complete' : 'Incomplete'}</div>
           ))
         }
         </div>
@@ -74,7 +104,7 @@ export default function DayDetailPage() {
         <div className='row'>
           <div>Time</div>
           <div>To-Do</div>
-          <div>Duration</div>
+          <div>Duration(hrs)</div>
           <div>Status</div>
         </div>
         {schedule}
