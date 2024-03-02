@@ -73,6 +73,36 @@ export default function DayDetailPage() {
               <div key={t._id} className={t.category}>
                 {t.edit ? (
                   <>
+                  {/* <input
+                    type='text'
+                    value={t.category}
+                    onChange={(e) => handleEditChange(t._id, 'category', e.target.value)}
+                  /> */}
+                  <select name="category" value={t.category} required onChange={(e) => handleEditChange(t._id, 'category', e.target.value)}>
+                    <option value="Exercise">Exercise</option>
+                    <option value="Study">Study</option>
+                    <option value="Jobs">Jobs</option>
+                    <option value="Read">Read</option>
+                  </select>
+                  <button className='cancel-edit' onClick={() => handleEditCancel(t)}>X</button>
+                  <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
+                  </>
+                ) : (
+                  <div className='todo-btns'>
+                    <p onClick={() => toggleEdit(t._id)}>{t.category}✏️</p>
+                    <p onClick={() => deleteToDo(t._id)}>&nbsp;&nbsp;|&nbsp;&nbsp;🗑️</p>
+                  </div>
+                )}
+              </div>
+            ))
+          }
+        </div>
+        <div>
+          { timeToDos && 
+            timeToDos.map((t) => (
+              <div key={t._id} className={t.category}>
+                {t.edit ? (
+                  <>
                   <input
                     type='text'
                     value={t.description}
@@ -82,10 +112,7 @@ export default function DayDetailPage() {
                   <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
                   </>
                 ) : (
-                  <>
-                    <p onClick={() => toggleEdit(t._id)}>{t.description}</p>
-                    <p onClick={() => deleteToDo(t._id)}>🗑️</p>
-                  </>
+                    <p onClick={() => toggleEdit(t._id)}>{t.description}✏️</p>
                 )}
               </div>
             ))
@@ -106,7 +133,7 @@ export default function DayDetailPage() {
                   <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
                   </>
                 ) : (
-                    <p onClick={() => toggleEdit(t._id)}>{t.time}</p>
+                    <p onClick={() => toggleEdit(t._id)}>{t.time}✏️</p>
                 )}
               </div>
             ))
@@ -127,7 +154,7 @@ export default function DayDetailPage() {
                 <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
                 </>
               ) : (
-                <p onClick={() => toggleEdit(t._id)}>{t.duration}</p>
+                <p onClick={() => toggleEdit(t._id)}>{t.duration}✏️</p>
               )}
             </div>
           ))
@@ -149,7 +176,7 @@ export default function DayDetailPage() {
                 <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
                 </>
               ) : (
-                <p onClick={() => toggleEdit(t._id)}>{t.complete ? 'Complete' : 'Incomplete'}</p>
+                <p onClick={() => toggleEdit(t._id)}>{t.complete ? 'Complete' : 'Incomplete'}✏️</p>
               )}
             </div>
           ))
@@ -166,6 +193,7 @@ export default function DayDetailPage() {
         <div className='row'>
           <div>Schedule</div>
           <div>To-Do</div>
+          <div>Description</div>
           <div>Time</div>
           <div>Duration(hrs)</div>
           <div>Status</div>

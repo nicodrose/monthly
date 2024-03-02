@@ -24,3 +24,7 @@
 .Read {
   background-color: violet;
 }
+
+.todo-btns {
+  display: inline-flex;
+}
