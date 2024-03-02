@@ -12,3 +12,7 @@ export function getAll(date) {
 export function update(updatedToDo) {
   return sendRequest(BASE_URL, 'PUT', updatedToDo);
 }
+
+export function deleteToDo(id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}

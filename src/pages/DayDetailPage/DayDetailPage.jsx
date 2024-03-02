@@ -42,6 +42,15 @@ export default function DayDetailPage() {
     setToDos(updatedToDos);
   }
 
+    async function deleteToDo(id) {
+      try {
+        await toDosAPI.deleteToDo(id);
+        setToDos(toDos.filter(todo => todo._id !== id));
+      } catch (err) {
+        console.err('Delete ToDo Failed', err)
+      }
+    }
+
   const schedule = []
 
   function minTwoDigits(n) {
@@ -73,7 +82,10 @@ export default function DayDetailPage() {
                   <button className='confirm-edit' onClick={() => handleEditConfirm(t)}>✓</button>
                   </>
                 ) : (
-                    <p onClick={() => toggleEdit(t._id)}>{t.description} at {t.time}</p>
+                  <>
+                    <p onClick={() => toggleEdit(t._id)}>{t.description}</p>
+                    <p onClick={() => deleteToDo(t._id)}>🗑️</p>
+                  </>
                 )}
               </div>
             ))

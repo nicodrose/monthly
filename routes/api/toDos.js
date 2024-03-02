@@ -11,7 +11,7 @@ router.post('/', toDosCtrl.create);
 router.get('/:date', toDosCtrl.index);
 // PUT /api/toDos/ (update a toDo)
 router.put('/', toDosCtrl.update);
-// DELETE /api/toDos/:date/:toDo (delete a single toDo)
-// router.delete('/:date/toDo', toDosCtrl.delete);
+// DELETE /api/toDos (delete a single toDo)
+router.delete('/:id', toDosCtrl.delete);
 
 module.exports = router;

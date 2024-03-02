@@ -4,7 +4,7 @@ module.exports = {
   create,
   index, 
   update,
-  // delete: deleteToDo
+  delete: deleteToDo
 };
 
 async function create(req, res) {
@@ -29,9 +29,12 @@ async function update(req, res) {
   }
 }
 
-// set up delete similar to update, include try/catch block
-
-// async function deleteToDo(req, res) {
-//   const toDo = await ToDo.findOne();
-//   res.json(toDo);
-// }
+async function deleteToDo(req, res) {
+  try {
+    const deletedToDo = await ToDo.findByIdAndDelete(req.params.id);
+    res.json(deletedToDo);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json('Delete ToDo Failed');
+  }
+}
