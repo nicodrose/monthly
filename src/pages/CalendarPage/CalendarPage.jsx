@@ -57,8 +57,11 @@ export default function CalendarPage() {
         className={`CalDay${isToday ? ' today' : ''}`}
         style={{ gridColumnStart: i === 1 && date.getDay() + 1 }}
         key={date}
+        // toDos={toDos}
         onClick={() => handleDayClick(date)}
-      ></article>
+      >
+        {date.getDate()}
+      </article>
     );
   }
 

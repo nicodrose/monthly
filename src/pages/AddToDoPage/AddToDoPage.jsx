@@ -6,8 +6,7 @@ export default function AddToDoForm({date, addToDo}) {
     date: date,
     time: '',
     duration: 0,
-    category: 'Exercise',
-
+    category: 'Exercise'
   });
 
   function handleChange(evt) {
