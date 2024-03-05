@@ -63,10 +63,15 @@ export default function CalendarPage() {
     const isToday = today.valueOf() === date.valueOf();
     const dayToDos = toDos.filter((t) => new Date(t.date).getDate() === i);
     const exerciseSymbol = dayToDos.some((t) => t.category === 'Exercise' && !t.complete) ? 'X' : '✓';
+    const exerciseSymbolCheck = dayToDos.some((t) => t.category === 'Exercise');
     const studySymbol = dayToDos.some((t) => t.category === 'Study' && !t.complete) ? 'X' : '✓';
+    const studySymbolCheck = dayToDos.some((t) => t.category === 'Study');
     const jobsSymbol = dayToDos.some((t) => t.category === 'Jobs' && !t.complete) ? 'X' : '✓';
+    const jobsSymbolCheck = dayToDos.some((t) => t.category === 'Jobs');
     const readSymbol = dayToDos.some((t) => t.category === 'Read' && !t.complete) ? 'X' : '✓';
-   
+    const readSymbolCheck = dayToDos.some((t) => t.category === 'Read');
+    console.log(dayToDos);
+
     calDays.push(
       <article
         className={`CalDay${isToday ? ' today' : ''}`}
@@ -75,8 +80,10 @@ export default function CalendarPage() {
         onClick={() => handleDayClick(date)}
       >
         {date.getDate()}
-        <div>🏃{exerciseSymbol} 🤓{studySymbol}</div>
-        <div>💼{jobsSymbol} 📚{readSymbol}</div>
+        {exerciseSymbolCheck && <div>🏃{exerciseSymbol}</div>}
+        {studySymbolCheck && <div>🤓{studySymbol}</div>}
+        {jobsSymbolCheck && <div>💼{jobsSymbol}</div>} 
+        {readSymbolCheck && <div>📚{readSymbol}</div>}
       </article>
     );
   }
