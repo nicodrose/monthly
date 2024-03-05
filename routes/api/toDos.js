@@ -13,5 +13,7 @@ router.get('/:date', toDosCtrl.index);
 router.put('/', toDosCtrl.update);
 // DELETE /api/toDos (delete a single toDo)
 router.delete('/:id', toDosCtrl.delete);
+// GET /api/todos/year/:year/month/:month
+router.get('/year/:year/month/:month', toDosCtrl.getForYearMonth);
 
 module.exports = router;

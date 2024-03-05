@@ -19,9 +19,9 @@ function aggregateToDosByCategory(toDos) {
     } else {
       tot[category] = {exists: false, allComplete: false};
     }
-    return tot;
+    return (tot);
   }, {});
-  return summary;
+  return (summary);
 }
 
 

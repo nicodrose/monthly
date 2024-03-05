@@ -7,9 +7,9 @@ export default function ToDoSummary(props) {
         return (
           <div key={category}>
             <span>{category}: </span>
-            {!details.exists && <span>No to-dos</span>}
-            {details.exists && details.allComplete && <span>All complete</span>}
-            {details.exists && !details.allComplete && <span>Incomplete</span>}
+            {!details.exists && <span>No To-Dos</span>}
+            {details.exists && details.allComplete && <span>✓</span>}
+            {details.exists && !details.allComplete && <span>X</span>}
           </div>
         );
       })}

@@ -1,5 +1,5 @@
 import sendRequest from "./send-request";
-const BASE_URL = '/api/toDos';
+const BASE_URL = '/api/todos';
 
 export function add(toDoData) {
   return sendRequest(BASE_URL, 'POST', toDoData);
@@ -15,4 +15,9 @@ export function update(updatedToDo) {
 
 export function deleteToDo(id) {
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}
+
+export function getAllForYearMonth(year, month) {
+  return sendRequest(`${BASE_URL}/year/${year}/month/${month}`); 
+  
 }

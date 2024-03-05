@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
+import * as toDosAPI from '../../utilities/toDos-api';
 import './CalendarPage.css';
 
 const MO_NAMES = [
@@ -21,8 +22,17 @@ export default function CalendarPage() {
   const today = new Date(new Date().setHours(0, 0, 0, 0));
   const [calMo, setCalMo] = useState(today.getMonth());
   const [calYr, setCalYr] = useState(today.getFullYear());
+  const [toDos, setToDos] = useState([]);
   const numCalDays = new Date(calYr, calMo + 1, 0).getDate();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function getToDos() {
+      const toDos = await toDosAPI.getAllForYearMonth(calYr, calMo);
+      setToDos(toDos);
+    } 
+    getToDos();
+  }, [calYr, calMo]);
 
   function handlePrevMo() {
     if (calMo === 0) {
@@ -51,16 +61,20 @@ export default function CalendarPage() {
   for (let i = 1; i <= numCalDays; i++) {
     const date = new Date(calYr, calMo, i);
     const isToday = today.valueOf() === date.valueOf();
-
+    const dayToDos = toDos.filter((t) => new Date(t.date).getDate() === i);
+    const exerciseSymbol = dayToDos.some((t) => t.category === 'Exercise' && !t.complete) ? 'X' : '✓';
+    const studySymbol = dayToDos.some((t) => t.category === 'Study' && !t.complete) ? 'X' : '✓';
+   
     calDays.push(
       <article
         className={`CalDay${isToday ? ' today' : ''}`}
         style={{ gridColumnStart: i === 1 && date.getDay() + 1 }}
         key={date}
-        // toDos={toDos}
         onClick={() => handleDayClick(date)}
       >
         {date.getDate()}
+        <div>ex: {exerciseSymbol}</div>
+        <div>st: {studySymbol}</div>
       </article>
     );
   }
