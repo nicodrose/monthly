@@ -64,6 +64,8 @@ export default function CalendarPage() {
     const dayToDos = toDos.filter((t) => new Date(t.date).getDate() === i);
     const exerciseSymbol = dayToDos.some((t) => t.category === 'Exercise' && !t.complete) ? 'X' : '✓';
     const studySymbol = dayToDos.some((t) => t.category === 'Study' && !t.complete) ? 'X' : '✓';
+    const jobsSymbol = dayToDos.some((t) => t.category === 'Jobs' && !t.complete) ? 'X' : '✓';
+    const readSymbol = dayToDos.some((t) => t.category === 'Read' && !t.complete) ? 'X' : '✓';
    
     calDays.push(
       <article
@@ -73,8 +75,8 @@ export default function CalendarPage() {
         onClick={() => handleDayClick(date)}
       >
         {date.getDate()}
-        <div>ex: {exerciseSymbol}</div>
-        <div>st: {studySymbol}</div>
+        <div>🏃{exerciseSymbol} 🤓{studySymbol}</div>
+        <div>💼{jobsSymbol} 📚{readSymbol}</div>
       </article>
     );
   }
