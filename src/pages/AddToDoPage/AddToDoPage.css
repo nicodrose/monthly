@@ -1,0 +1,27 @@
+.addToDoPage {
+  display: flex;
+  flex-direction: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-width: 2px;
+  border-color: aqua;
+  background-color: lightcoral;
+}
+
+.addToDoPage label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.addToDoPage input,
+.addToDoPage select,
+.addToDoPage button {
+  padding: 5px;
+  margin: 0;
+}
+
+.addToDoPage button {
+  cursor: pointer;
+}

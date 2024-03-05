@@ -1,3 +1,5 @@
+import './ToDoSummaryPage.css';
+
 export default function ToDoSummary(props) {
   const summary = props.summary;
   return (
@@ -5,9 +7,9 @@ export default function ToDoSummary(props) {
       {Object.entries(summary).map(function(entry) {
         const [category, details] = entry;
         return (
-          <div key={category}>
+          <div key={category} className="toDoSummary">
             <span>{category}: </span>
-            {!details.exists && <span>No To-Dos</span>}
+            {!details.exists && <span>None</span>}
             {details.exists && details.allComplete && <span>✓</span>}
             {details.exists && !details.allComplete && <span>X</span>}
           </div>

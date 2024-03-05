@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import './AddToDoPage.css';
 
 export default function AddToDoForm({date, addToDo}) {
   const[toDoData, setToDoData] = useState({
@@ -18,10 +19,8 @@ export default function AddToDoForm({date, addToDo}) {
     addToDo(toDoData);
   }
 
-  // console.log(toDoData.time);
-  
   return (
-    <div>
+    <div className='addToDoPage'>
       <form onSubmit={handleSubmit}>
       <label>Time: <input type="time" name="time" value={toDoData.time} onChange={handleChange}/></label>
       <label>Description: <input type="text" name="description" value={toDoData.description} onChange={handleChange}/></label>

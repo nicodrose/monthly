@@ -1,0 +1,5 @@
+.toDoSummary {
+  display: flex;
+  align-items: center;
+  background-color: lightcyan;
+}
