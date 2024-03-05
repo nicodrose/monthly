@@ -80,10 +80,12 @@ export default function CalendarPage() {
         onClick={() => handleDayClick(date)}
       >
         {date.getDate()}
-        {exerciseSymbolCheck && <div>🏃{exerciseSymbol}</div>}
-        {studySymbolCheck && <div>🤓{studySymbol}</div>}
-        {jobsSymbolCheck && <div>💼{jobsSymbol}</div>} 
-        {readSymbolCheck && <div>📚{readSymbol}</div>}
+        <div className='toDoCategories'>
+          <div className='exerciseCal'>{exerciseSymbolCheck && <div>🏃{exerciseSymbol}</div>}</div>
+          <div className='studyCal'>{studySymbolCheck && <div>🤓{studySymbol}</div>}</div>
+          <div className='jobsCal'>{jobsSymbolCheck && <div>💼{jobsSymbol}</div>}</div>
+          <div className='readCal'>{readSymbolCheck && <div>📚{readSymbol}</div>}</div>
+        </div>
       </article>
     );
   }
