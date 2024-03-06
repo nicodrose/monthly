@@ -15,7 +15,7 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-  const todos = await ToDo.find({date: req.params.date});
+  const todos = await ToDo.find({user: req.user._id, date: req.params.date});
   console.log(todos);
   res.json(todos);
 }
@@ -43,7 +43,13 @@ async function deleteToDo(req, res) {
 async function getForYearMonth(req, res) {
   const startDate = new Date(req.params.year, req.params.month, 1);
   const endDate = new Date(req.params.year, parseInt(req.params.month) + 1, 0);
-  const toDos = await ToDo.find({$and: [{date: {$gte: startDate}}, {date: {$lte: endDate}}]});
+  const toDos = await ToDo.find({
+    user: req.user._id,
+    date: {
+      $gte: startDate, 
+      $lte: endDate
+    }
+  });
   console.log(toDos);
   res.json(toDos);
 }
