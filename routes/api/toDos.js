@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const toDosCtrl = require('../../controllers/api/toDos');
+const toDosCtrl = require('../../controllers/api/todos');
 const ensureLoggedIn = require('../../config/ensureLoggedIn');
 
 // All paths start with '/api/toDos'
