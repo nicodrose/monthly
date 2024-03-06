@@ -24,7 +24,6 @@ function aggregateToDosByCategory(toDos) {
   return (summary);
 }
 
-
 export default function DayDetailPage() {
   const {date} = useParams();
   const [toDos, setToDos] = useState([]);
@@ -32,16 +31,6 @@ export default function DayDetailPage() {
   const [toDoBeingEdited, setToDoBeingEdited] = useState(null);
   const [editData, setEditData] = useState({});
 
-  // const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
-  
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth < 480);
-  //   };
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
-  
   async function addToDo(toDoData) {
     const toDo = await toDosAPI.add(toDoData);
     setToDos([...toDos, toDo]);
@@ -102,7 +91,6 @@ export default function DayDetailPage() {
     const time = minTwoDigits(i);
     const timeToDos = toDos.filter((t) => time === t.time.substring(0, t.time.indexOf(':')))
     
-    // if (timeToDos.length > 0 || !isMobile) {
     schedule.push(
       <div
         className='row'
@@ -217,15 +205,12 @@ export default function DayDetailPage() {
         </div>
       </div>
     );
-    // }
   }
 
   return (
     <div>
     <h1>Daily Schedule</h1>
-    {/* <div className='dayDetailHeader'> */}
     <ToDoSummaryPage summary={summary} />
-    {/* </div> */}
       <div>
         <div className='row'>
           <div>Schedule</div>

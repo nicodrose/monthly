@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.page-footer {
+  letter-spacing: 1px;
+  text-align: right;
+  color: black;
+}

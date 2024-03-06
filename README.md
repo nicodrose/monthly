@@ -5,8 +5,8 @@ People today need something more manageable...welcome to monthly!
 
 # 📸 : Screenshots
 
-<img src="https://i.imgur.com/QL81vmU.png">
-<img src="https://i.imgur.com/MPsDRIy.png">
+<img src="https://i.imgur.com/hcbIaMN.png">
+<img src="https://i.imgur.com/Yh78Ioi.png">
 
 # 💻 : Technologies Used
 

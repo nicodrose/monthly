@@ -71,3 +71,41 @@
   bottom: 5px;
   right: 5px;
 }
+
+.progressCount {
+  display: flex;
+  flex-direction: column;
+  background-color: lightgoldenrodyellow;
+  font-size: 1.5vmin;
+  padding: 10px;
+  margin: 10px; 
+  border-radius: 15px;
+}
+
+.exerciseProgress {
+  background-color: aliceblue;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 1.5vmin;
+}
+
+.studyProgress {
+  background-color: lightgreen;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 1.5vmin;
+}
+
+.jobsProgress {
+  background-color: salmon;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 1.5vmin;
+}
+
+.readProgress {
+  background-color: violet;
+  border-radius: 10px;
+  margin: 20px;
+  font-size: 1.5vmin;
+}

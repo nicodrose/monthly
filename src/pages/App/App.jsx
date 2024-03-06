@@ -13,6 +13,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
 
   return (
+    <>
     <main className="App">
       { user ?
           <>
@@ -29,5 +30,9 @@ export default function App() {
           <AuthPage setUser={setUser} />
       }
     </main>
+     <footer className='page-footer'>
+      <div className='right'>All Rights Reservered, &copy; 2024 monthly &nbsp;</div>
+    </footer>
+    </>
   );
 }

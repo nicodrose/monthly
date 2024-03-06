@@ -1,0 +1,14 @@
+.login-signupForm {
+  font-size: 1.25vmax;
+}
+
+.email-input, .password-input {
+  font-size: 1.25vmax;
+}
+
+nav, a {
+  background-color: goldenrod;
+  font-size: 1.5vmax;
+  color: white;
+  border-radius: 15px;
+}

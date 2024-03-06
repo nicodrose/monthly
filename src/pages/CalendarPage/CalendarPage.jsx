@@ -96,21 +96,6 @@ export default function CalendarPage() {
   console.log(allExercises);
   console.log(doneExercises);
 
-  // const progressCount = toDos.reduce((acc, cur) => {
-  //   if (cur['category'] in acc) {
-  //     acc[cur['category']] = acc[cur['category']] + 1
-  //   } else {
-  //     acc[cur['category']] = 1
-  //   }
-  //   if (`done${cur['category']}` in acc && acc[cur['category']].completed) {
-  //     acc[`done${cur['category']}`] = acc[`done${cur['category']}`] + 1
-  //   } else {
-  //     acc[`done${cur['category']}`] = 1
-  //   }
-  //   return (acc);
-  // }, {});
-  // console.log(progressCount);
-
   for (let i = 1; i <= numCalDays; i++) {
     const date = new Date(calYr, calMo, i);
     const isToday = today.valueOf() === date.valueOf();
@@ -123,7 +108,6 @@ export default function CalendarPage() {
     const jobsSymbolCheck = dayToDos.some((t) => t.category === 'Jobs');
     const readSymbol = dayToDos.some((t) => t.category === 'Read' && !t.complete) ? 'X' : '✓';
     const readSymbolCheck = dayToDos.some((t) => t.category === 'Read');
-    // console.log(dayToDos);
 
     calDays.push(
       <article
@@ -162,11 +146,11 @@ export default function CalendarPage() {
         <div className="flex-ctr-ctr">Sa</div>
         {calDays}
       </section>
-      <div>Good Progress!</div>
-      <p>Exercise Progress: {doneExercises} / {allExercises}</p>
-      <p>Study Progress: {doneStudy} / {allStudy}</p>
-      <p>Jobs Progress: {doneJobs} / {allJobs}</p>
-      <p>Read Progress: {doneRead} / {allRead}</p>
+        <div className='progressCount'>Monthly Progress Status: Keep It Up!</div>
+        <p className='exerciseProgress'>Exercise Progress: {doneExercises} / {allExercises}</p>
+        <p className='studyProgress'>Study Progress: {doneStudy} / {allStudy}</p>
+        <p className='jobsProgress'>Jobs Progress: {doneJobs} / {allJobs}</p>
+        <p className='readProgress'>Read Progress: {doneRead} / {allRead}</p>
       </>
   );
 }
