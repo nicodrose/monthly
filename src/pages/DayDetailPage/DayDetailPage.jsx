@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
-import * as toDosAPI from '../../utilities/toDos-api';
+import * as toDosAPI from '../../utilities/todos-api';
 import AddToDoPage from '../AddToDoPage/AddToDoPage';
 import ToDoSummaryPage from '../ToDoSummaryPage/ToDoSummaryPage';
 import '../DayDetailPage/DayDetailPage.css';

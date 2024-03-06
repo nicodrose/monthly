@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
-import * as toDosAPI from '../../utilities/toDos-api';
+import * as toDosAPI from '../../utilities/todos-api';
 import './CalendarPage.css';
 
 const MO_NAMES = [
