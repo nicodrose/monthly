@@ -6,6 +6,7 @@ import AuthPage from '../AuthPage/AuthPage';
 import DayDetailPage from '../DayDetailPage/DayDetailPage';
 import CalendarPage from '../CalendarPage/CalendarPage';
 import AddToDoPage from '../AddToDoPage/AddToDoPage';
+import LandingPage from '../LandingPage/LandingPage';
 import NavBar from '../../components/NavBar/NavBar';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
+              <Route path="/" element={<LandingPage />}  />
               <Route path="/calendar" element={<CalendarPage />}  />
               <Route path="/calendar/:date" element={<DayDetailPage />} />
               <Route path="/calendar/:date/addToDo" element={<AddToDoPage />} />

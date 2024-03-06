@@ -1,27 +1,56 @@
-.addToDoPage {
+/* .addToDoPage {
   display: flex;
   flex-direction: wrap;
   align-items: center;
-  gap: 20px;
   padding: 20px;
-  border-width: 2px;
-  border-color: aqua;
+  border-radius: 25px;
   background-color: lightcoral;
+  font-size: 1vmax;
 }
 
 .addToDoPage label {
   display: flex;
   align-items: center;
-  gap: 10px;
+}
+
+.addToDoPage input {
+  padding: 10px 10px 10px 10px;
+  margin: 5px 5px 5px 5px;
+}
+
+.addToDoPage select {
+  padding: 10px;
+  margin: 5px 5px 5px 5px;
+}
+
+.addToDoPage button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+} */
+
+
+.addToDoPage form {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Allocate 1 fraction of the available space to labels and 2 fractions to inputs */
+  gap: 10px; /* Space between rows and columns */
+  align-items: center; /* Align items vertically in the center */
+}
+
+.addToDoPage label {
+  text-align: right; /* Right-align the text of the labels */
+  padding-right: 10px; /* Optional: adds some space between the labels and inputs */
 }
 
 .addToDoPage input,
-.addToDoPage select,
-.addToDoPage button {
-  padding: 5px;
-  margin: 0;
+.addToDoPage select {
+  justify-self: start; /* Align inputs to the start of their grid column */
+  padding: 10px; /* Adjust padding as needed */
+  width: 100%; /* Make inputs take up the full width of their column */
 }
 
 .addToDoPage button {
-  cursor: pointer;
+  grid-column: 2 / 3; /* Place the button in the second column */
+  justify-self: start; /* Align the button to the start of its grid column */
+  padding: 10px;
 }

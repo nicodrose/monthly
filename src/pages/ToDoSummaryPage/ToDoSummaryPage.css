@@ -1,5 +1,8 @@
 .toDoSummary {
-  display: flex;
-  align-items: center;
-  background-color: lightcyan;
+  display: inline-flex;
+  background-color: lightgoldenrodyellow;
+  font-size: 1.25vmax;
+  padding: 15px;
+  margin: 0px 10px 25px 10px;
+  border-radius: 15px;
 }

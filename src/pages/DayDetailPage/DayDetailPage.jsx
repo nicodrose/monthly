@@ -108,7 +108,7 @@ export default function DayDetailPage() {
         className='row'
         key={i}
       >
-        <div>{`${i}:00`}</div>
+        <div className='schedule-time'>{`${i}:00`}</div>
         <div>
           { timeToDos && 
             timeToDos.map((t) => (
@@ -223,10 +223,9 @@ export default function DayDetailPage() {
   return (
     <div>
     <h1>Daily Schedule</h1>
-    <div className='dayDetailHeader'>
-    <AddToDoPage date={date} addToDo={addToDo}/>
+    {/* <div className='dayDetailHeader'> */}
     <ToDoSummaryPage summary={summary} />
-    </div>
+    {/* </div> */}
       <div>
         <div className='row'>
           <div>Schedule</div>
@@ -238,6 +237,7 @@ export default function DayDetailPage() {
         </div>
         {schedule}
       </div>
+    <AddToDoPage date={date} addToDo={addToDo}/>
     </div>
   );
 }
