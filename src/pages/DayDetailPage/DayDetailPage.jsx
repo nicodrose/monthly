@@ -189,7 +189,6 @@ export default function DayDetailPage() {
               {t === toDoBeingEdited ? (
                 <input
                   type='checkbox'
-                  //could change type to checkbox and in row 113 change e.target.value to e.target.checked
                   checked={editData.complete}
                   name="complete"
                   onChange={handleEditChange}
