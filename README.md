@@ -1,6 +1,6 @@
 ## monthly
 
-Keeping up with New Years resolutions is tough, keeping up with them for a whole year is tougher.
+Keeping up with New Years resolutions for a whole year is tough.
 People today need something more manageable...welcome to monthly!
 
 # 📸 : Screenshots
